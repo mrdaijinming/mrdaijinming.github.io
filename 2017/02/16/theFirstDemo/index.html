@@ -6,21 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>javaScript总结 | 前端开发工程师</title>
+  <title>前端开发工程师</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js中有几种数据类型？
-基本数据类型：String,Number,Boolean,Null(null是object型的，但不是Object的实例),Undefined引用数据类型：Object，functionObject又分为object,String,Boolean,Date,Math,RegExp,Array知识点：1.js中所有对象都派生自Object2.实例：123456var a=nu">
-<meta property="og:type" content="article">
-<meta property="og:title" content="javaScript总结">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="前端开发工程师">
 <meta property="og:url" content="http://yoursite.com/2017/02/16/theFirstDemo/index.html">
 <meta property="og:site_name" content="前端开发工程师">
-<meta property="og:description" content="js中有几种数据类型？
-基本数据类型：String,Number,Boolean,Null(null是object型的，但不是Object的实例),Undefined引用数据类型：Object，functionObject又分为object,String,Boolean,Date,Math,RegExp,Array知识点：1.js中所有对象都派生自Object2.实例：123456var a=nu">
-<meta property="og:updated_time" content="2017-02-20T09:54:32.000Z">
+<meta property="og:updated_time" content="2017-02-20T10:06:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javaScript总结">
-<meta name="twitter:description" content="js中有几种数据类型？
-基本数据类型：String,Number,Boolean,Null(null是object型的，但不是Object的实例),Undefined引用数据类型：Object，functionObject又分为object,String,Boolean,Date,Math,RegExp,Array知识点：1.js中所有对象都派生自Object2.实例：123456var a=nu">
+<meta name="twitter:title" content="前端开发工程师">
   
     <link rel="alternative" href="/atom.xml" title="前端开发工程师" type="application/atom+xml">
   
@@ -161,44 +155,9 @@
             <article id="post-theFirstDemo" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      javaScript总结
-    </h1>
-  
-
-        
-        <a href="/2017/02/16/theFirstDemo/" class="archive-article-date">
-  	<time datetime="2017-02-16T09:02:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-16</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="js中有几种数据类型？"><a href="#js中有几种数据类型？" class="headerlink" title="js中有几种数据类型？"></a>js中有几种数据类型？</h2><blockquote>
-<p>基本数据类型：String,Number,Boolean,Null(null是object型的，但不是Object的实例),Undefined<br>引用数据类型：Object，function<br>Object又分为object,String,Boolean,Date,Math,RegExp,Array<br>知识点：<br>1.js中所有对象都派生自Object<br>2.实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a=null;</div><div class="line">var b;</div><div class="line">var c=new object;</div><div class="line">console.log(typeof object)//null是object型的，但不是object的实例</div><div class="line">console.log(typeof b);//未经初始化的变量默认值都是undefined</div><div class="line">console.log(typeof c);//object</div></pre></td></tr></table></figure></p>
-<p>3.Undefined类型只有一个值，即特殊的undefined，所以undefined可以当做关键字来进行判断：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var message;</div><div class="line">console.log(message===undefined);//true，此处的undefined相当于关键字</div></pre></td></tr></table></figure></p>
-<p>4.age虽然为undefined类型，但是可以获取类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var message;</div><div class="line">console.log(typeof message);</div><div class="line">console.log(typeof age);//虽然未定义age，但是可以获取age类型</div></pre></td></tr></table></figure></p>
-<p>5.undefined值派生自null,所以相对比较null==undefined为true，null是空指针但未用，有个占位符,undefined连指针都没有，也没有占位符，所以绝对比较null===undefined为false;</p>
-</blockquote>
-<h2 id="null和undefined的区别？"><a href="#null和undefined的区别？" class="headerlink" title="null和undefined的区别？"></a>null和undefined的区别？</h2><blockquote>
-<p>null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。<br>当声明的变量还未被初始化时，变量的默认值为undefined。<br>null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。<br>undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">（1）变量被声明了，但没有赋值时，就等于undefined。</div><div class="line">（2) 调用函数时，应该提供的参数没有提供，该参数等于undefined。</div><div class="line">（3）对象没有赋值的属性，该属性的值为undefined。</div><div class="line">（4）函数没有返回值时，默认返回undefined。</div></pre></td></tr></table></figure></p>
-<p>null表示”没有对象”，即该处不应该有值。典型用法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">（1） 作为函数的参数，表示该函数的参数不是对象。</div><div class="line">（2） 作为对象原型链的终点。</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="ajax六步"><a href="#ajax六步" class="headerlink" title="ajax六步"></a>ajax六步</h2><blockquote>
-<p>(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象.<br>(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息.<br>(3)设置响应HTTP请求状态变化的函数.<br>(4)发送HTTP请求.<br>(5)获取异步调用返回的数据.<br>(6)使用JavaScript和DOM实现局部刷新.</p>
-</blockquote>
-<h2 id="为什么要有同源限制？"><a href="#为什么要有同源限制？" class="headerlink" title="为什么要有同源限制？"></a>为什么要有同源限制？</h2><blockquote>
-<p>我们举例说明：比如一个黑客程序，他利用Iframe把真正的银行登录页面嵌到他的页面上，当你使用真实的用户名，密码登录时，他的页面就可以通过Javascript读取到你的表单中input中的内容，这样用户名，密码就轻松到手了。</p>
-</blockquote>
-<h2 id="arguments机制"><a href="#arguments机制" class="headerlink" title="arguments机制"></a>arguments机制</h2><blockquote>
-<p>实参给形参传值，默认情况下，从左往右一个个传值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">funcation fn()&#123;</div><div class="line">console.dir(arguments);//参数数组</div><div class="line">console.log(arguments.callee);//代表函数本身</div><div class="line">&#125;</div><div class="line">fn(1,2,3);</div></pre></td></tr></table></figure></p>
-<p>callee 属性是 arguments 对象的一个成员<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function factorial(n)&#123;</div><div class="line">  if (n &lt;= 0)</div><div class="line">    return 1;</div><div class="line">  else</div><div class="line">    return n * arguments.callee(n - 1)</div><div class="line">&#125;</div><div class="line">print(factorial(3));</div></pre></td></tr></table></figure></p>
-</blockquote>
-
+        
       
 
       
