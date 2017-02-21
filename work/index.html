@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>智齿科技 | 前端开发工程师</title>
+  <title>前端开发工程师</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="智齿科技">
+  <meta name="description" content="div 作输入框常遇的问题（参考微信网页版，contenteditable）
+1.过滤从word等文本编辑器粘贴过来的文档，去除各种html标签，保留回车;2.一般做输入框会涉及到插入表情，此时的表情是Img标签，所以要其其数据来源的Img标签做一下区分，大体的思路就是用正则匹配到每个dom元素后，在每个元素的后面加一个标识，再通过js的方法将所有的dom标签全部去掉，只保留标识，再将标识转化为">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前端开发工程师">
 <meta property="og:url" content="http://yoursite.com/work/index.html">
 <meta property="og:site_name" content="前端开发工程师">
-<meta property="og:updated_time" content="2017-02-20T07:18:35.000Z">
+<meta property="og:description" content="div 作输入框常遇的问题（参考微信网页版，contenteditable）
+1.过滤从word等文本编辑器粘贴过来的文档，去除各种html标签，保留回车;2.一般做输入框会涉及到插入表情，此时的表情是Img标签，所以要其其数据来源的Img标签做一下区分，大体的思路就是用正则匹配到每个dom元素后，在每个元素的后面加一个标识，再通过js的方法将所有的dom标签全部去掉，只保留标识，再将标识转化为">
+<meta property="og:updated_time" content="2017-02-21T03:11:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="智齿科技">
+<meta name="twitter:title" content="前端开发工程师">
+<meta name="twitter:description" content="div 作输入框常遇的问题（参考微信网页版，contenteditable）
+1.过滤从word等文本编辑器粘贴过来的文档，去除各种html标签，保留回车;2.一般做输入框会涉及到插入表情，此时的表情是Img标签，所以要其其数据来源的Img标签做一下区分，大体的思路就是用正则匹配到每个dom元素后，在每个元素的后面加一个标识，再通过js的方法将所有的dom标签全部去掉，只保留标识，再将标识转化为">
   
     <link rel="alternative" href="/atom.xml" title="前端开发工程师" type="application/atom+xml">
   
@@ -155,24 +161,237 @@
             <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      智齿科技
-    </h1>
-  
-
-        
-        <a href="/work/index.html" class="archive-article-date">
-  	<time datetime="2017-02-16T09:02:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-16</time>
-</a>
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<h2 id="div-作输入框常遇的问题（参考微信网页版，contenteditable）"><a href="#div-作输入框常遇的问题（参考微信网页版，contenteditable）" class="headerlink" title="div 作输入框常遇的问题（参考微信网页版，contenteditable）"></a>div 作输入框常遇的问题（参考微信网页版，contenteditable）</h2></blockquote>
+<p>1.过滤从word等文本编辑器粘贴过来的文档，去除各种html标签，保留回车;<br>2.一般做输入框会涉及到插入表情，此时的表情是Img标签，所以要其其数据来源的Img标签做一下区分，大体的思路就是用正则匹配到每个dom元素后，在每个元素的后面加一个标识，再通过js的方法将所有的dom标签全部去掉，只保留标识，再将标识转化为回车，这里要注意，自已的表情不应被过滤，所有要特殊转一下。以下代码有详解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">//过虑图片,sendType为快捷回复或智能回复的标识</div><div class="line">var filterImg=function(data,sendType)&#123;</div><div class="line">var sendType=sendType||&apos;&apos;;</div><div class="line">//过滤粘贴过来的内容（过滤图片</div><div class="line">setTimeout(function()&#123;</div><div class="line">var str=data?data:$sendMessage.html();</div><div class="line">//遇到这些标签变成回车</div><div class="line">var list = [&apos;p&apos;,&apos;br&apos;];</div><div class="line">var innerType=1;</div><div class="line">//var listremove=[&apos;pre&apos;,&apos;span&apos;];</div><div class="line">//将list中的标签结尾添加&amp;ret;</div><div class="line">var des = str.replace(/&lt;\/([a-zA-Z]*)&gt;/g,function($0,$1)&#123;</div><div class="line">var tagName = $1/*.toLowerCase()*/;</div><div class="line">var flag = false;</div><div class="line">for(var i=0,len=list.length;i&lt;len;i++)&#123;</div><div class="line">if(tagName == list[i])&#123;</div><div class="line">flag = true;</div><div class="line">break;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">var tar = $0;</div><div class="line">if(flag)&#123;</div><div class="line">tar += &quot;&amp;ret;&quot;;</div><div class="line">&#125;</div><div class="line">innerType=2;</div><div class="line">return tar;</div><div class="line">&#125;);</div><div class="line">//将listremove里面的标签清除</div><div class="line">//将带zc-face类名的Img标签保留，并过滤其它图片</div><div class="line">// alert(des);</div><div class="line">des = des.replace(/&lt;img([\s\S])*?(\/)?&gt;/g,function($0,$1)&#123;</div><div class="line">var list = $0.split(&quot; &quot;);</div><div class="line">var url=&quot;&quot;,</div><div class="line">dataSrc=&quot;&quot;,</div><div class="line">flag=false;</div><div class="line">for(var i=0;i&lt;list.length;i++)&#123;</div><div class="line">var item = list[i]/*.toLowerCase()*/;</div><div class="line">// console.log(item)</div><div class="line">if(item.indexOf(&quot;class&quot;) &gt;= 0)&#123;</div><div class="line">if(item.indexOf(&quot;zc-face&quot;) &gt;= 0||item.indexOf(&quot;zc-emoji&quot;) &gt;= 0)&#123;</div><div class="line">flag = true;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">if(item.indexOf(&quot;src&quot;) &gt;=0)&#123;</div><div class="line">url = item.replace(&quot;src&quot;,&apos;&apos;).replace(/[&apos;&quot;=]/g,&apos;&apos;).replace(/(\/)?&gt;$/,&apos;&apos;);</div><div class="line">&#125;</div><div class="line">if(item.indexOf(&quot;data-src&quot;)&gt;=0)&#123;</div><div class="line">dataSrc=item.replace(&quot;data-src&quot;,&apos;&apos;).replace(/[&apos;&quot;=]/g,&apos;&apos;);</div><div class="line">//console.log(dataSrc);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">if(flag)&#123;</div><div class="line">return &apos;&#123;&quot;url&quot;:&quot;&apos;+url+&apos;&quot;,&quot;dataSrc&quot;:&quot;&apos;+dataSrc+&apos;&quot;&#125;&apos;;</div><div class="line">&#125;</div><div class="line">return &apos;&apos;;</div><div class="line">&#125;);</div><div class="line">//将&amp;ret;替换成回车</div><div class="line">des=des.replace(/&amp;ret;/g,&apos;&lt;br&gt;&apos;)</div><div class="line">var div = document.createElement(&quot;div&quot;);</div><div class="line">div.innerHTML = des;</div><div class="line">var text = div.innerText;</div><div class="line">//console.log(text)</div><div class="line">//将表情[url:&apos;+url+&apos;]转化成表情img标签</div><div class="line">text = text.replace(/\&#123;&quot;url&quot;:([\s\S])*?,&quot;dataSrc&quot;:([\s\S])*?\&#125;/g,function($0,$1)&#123;</div><div class="line">contact = JSON.parse($0);</div><div class="line">//console.log(contact[&apos;url&apos;]);</div><div class="line">if(contact[&apos;url&apos;].indexOf(&quot;qqarclist&quot;) &gt;= 0)&#123;</div><div class="line">return &apos;&lt;img class=&quot;zc-face&quot; data-src=&apos;+contact[&apos;dataSrc&apos;]+&apos; src=&quot;&apos;+contact[&apos;url&apos;]+&apos;&quot; /&gt;&apos;;</div><div class="line">&#125;else if(contact[&apos;url&apos;].indexOf(&quot;emoji&quot;) &gt;= 0)&#123;</div><div class="line">return &apos;&lt;img class=&quot;zc-emoji&quot; data-src=&apos;+contact[&apos;dataSrc&apos;]+&apos; src=&quot;&apos;+contact[&apos;url&apos;]+&apos;&quot; /&gt;&apos;;</div><div class="line">&#125;</div><div class="line">&#125;);</div><div class="line">//console.log(text);</div><div class="line">//跟据内容是否被过滤了来选择重新给输入框赋值的方式</div><div class="line">if(innerType==2||sendType==&apos;reply&apos;)&#123;//1为纯文本或表情文本</div><div class="line">$sendMessage.html(text);</div><div class="line">&#125;else&#123;</div><div class="line">focusPosition();</div><div class="line">&#125;</div><div class="line">// alert(text);</div><div class="line">// 光标定位行不通，无法阻止浏览器默认粘贴的行为，如果阻止paste事件的默认行为则所有行为都会被阻止，无法实现,这块采用了微信的处理方式</div><div class="line">/*var selection=window.getSelection();</div><div class="line">var range=window.getSelection().getRangeAt(0);</div><div class="line">var hasR = range.createContextualFragment(&quot;&quot;);</div><div class="line">var hasR_lastChild = hasR.lastChild;</div><div class="line">range.insertNode(hasR);</div><div class="line">if (hasR_lastChild) &#123;</div><div class="line">range.setEndAfter(hasR_lastChild);</div><div class="line">range.setStartAfter(hasR_lastChild)</div><div class="line">&#125;</div><div class="line">//移除selection中所有的range对象，执行后anchorNode、focusNode被设置为null，不存在任何被选中的内容。</div><div class="line">selection.removeAllRanges();</div><div class="line">selection.addRange(range);</div><div class="line">return false;*/</div><div class="line">&#125;,10)</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>3.光标的定位，复制一段文字，插入到文字中间，光标无法定位到粘贴文字之后，只能追加到文本末尾（微信网页版的处理方案，不要试图去定位光标，无法阻止浏览器行为，如果阻止粘贴事件的默认行为所有行为都会被阻止，无法实现）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">//定位光标到输入框末尾</div><div class="line">var focusPosition=function()&#123;</div><div class="line">$sendMessage.focus();</div><div class="line">//返回一个 Selection 对象，表示用户选择的文本。</div><div class="line">if(window.getSelection())&#123;</div><div class="line">var selection=window.getSelection();</div><div class="line">//返回一个代表当前选择的范围中的一个范围对象。</div><div class="line">var range=selection.getRangeAt(0);</div><div class="line">if(range.startContainer.id!=&apos;js-sendMessage&apos;&amp;&amp;range.startContainer.parentNode.id!=&apos;js-sendMessage&apos;)&#123;</div><div class="line">return;</div><div class="line">&#125;</div><div class="line">var hasR = range.createContextualFragment($sendMessage.html());</div><div class="line">var hasR_lastChild = hasR.lastChild;</div><div class="line">$sendMessage.html(&quot;&quot;);</div><div class="line">range.insertNode(hasR);</div><div class="line">if (hasR_lastChild) &#123;</div><div class="line">range.setEndAfter(hasR_lastChild);</div><div class="line">range.setStartAfter(hasR_lastChild)</div><div class="line">&#125;</div><div class="line">//移除selection中所有的range对象，执行后anchorNode、focusNode被设置为null，不存在任何被选中的内容。</div><div class="line">selection.removeAllRanges();</div><div class="line">selection.addRange(range);</div><div class="line">return false;</div><div class="line">&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>4.插入回车，在一个文字的末尾插入一个回车符，谷歌浏览器会默认取消换行，必须追加双回车才能实现换行，这个需要做一下判断。（如果末尾是一个表情Img标签，则无法实现追加双回车，因为此时涉及到dom元素的长度，无法判断光标的位置，微信的处理方案是不予解决）;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">//将txt插入输入框</div><div class="line">//插入回车 参考地址[http://stackoverflow.com/questions/6023307/dealing-with-line-breaks-on-contenteditable-div/12957539#12957539]</div><div class="line">var getC=function(txt)&#123;</div><div class="line">var txt=txt||&apos;&apos;;</div><div class="line">//$sendMessage.focus();</div><div class="line">//返回一个 Selection 对象，表示用户选择的文本。</div><div class="line">if(window.getSelection())&#123;</div><div class="line">var selection=window.getSelection();</div><div class="line">//返回一个代表当前选择的范围中的一个范围对象。</div><div class="line">var range=selection.getRangeAt(0);</div><div class="line">@if(range.startContainer.id!=&apos;js-sendMessage&apos;&amp;&amp;range.startContainer.parentNode.id!=&apos;js-sendMessage&apos;)&#123;</div><div class="line">//console.log(txt);</div><div class="line">//输入框失焦则向文本框最后插表情</div><div class="line">$sendMessage.append(txt);</div><div class="line">return;</div><div class="line">&#125;</div><div class="line">//如果txt是回车就插入一个空格，否则</div><div class="line">//var cursorPosi=range.startOffset;</div><div class="line">if(txt==&apos;\n&apos;)&#123;</div><div class="line">//var br = document.createElement(&apos;br&apos;);</div><div class="line">var _inner=&apos;&apos;,</div><div class="line">_startOffset; _inner=range.commonAncestorContainer.innerHTML||range.commonAncestorContainer.data||&apos;&apos;;</div><div class="line">range.deleteContents();</div><div class="line">//console.log(range)</div><div class="line">_startOffset=range.startOffset||0;</div><div class="line">//console.log(_startOffset);</div><div class="line">//console.log(_inner.length)</div><div class="line">if(_startOffset==_inner.length)&#123;</div><div class="line">//追加两个回车，处理兼容</div><div class="line">var hasR = range.createContextualFragment(&apos;\n&apos;);</div><div class="line">range.insertNode(hasR);</div><div class="line">&#125;</div><div class="line">&#125;;</div><div class="line">var hasR = range.createContextualFragment(txt);</div><div class="line">var hasR_lastChild = hasR.lastChild;</div><div class="line">range.insertNode(hasR);</div><div class="line">if (hasR_lastChild) &#123;</div><div class="line">range.setEndAfter(hasR_lastChild);</div><div class="line">range.setStartAfter(hasR_lastChild)</div><div class="line">&#125;</div><div class="line">//移除selection中所有的range对象，执行后anchorNode、focusNode被设置为null，不存在任何被选中的内容。</div><div class="line">selection.removeAllRanges();</div><div class="line">selection.addRange(range);</div><div class="line">scrollT();</div><div class="line">return false;</div><div class="line">&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>5.当点击表情的时候文本框要失焦这个时候要存一下光标的位置<br>//表情定位，缓存位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">p1element = document.getElementById(&apos;js-sendMessage&apos;);</div><div class="line">cacheRange = null;</div><div class="line">p1element.onblur = function()&#123;</div><div class="line">if(window.getSelection())&#123;</div><div class="line">var sel = window.getSelection();</div><div class="line">if(sel.rangeCount)&#123;</div><div class="line">cacheRange = sel.getRangeAt(0);</div><div class="line">cacheRange.anchorNode = sel.anchorNode;</div><div class="line">cacheRange.anchorOffset = sel.anchorOffset;</div><div class="line">cacheRange.focusNode = sel.focusNode;</div><div class="line">cacheRange.focusrOffset = sel.focusOffset;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="h5中div做输入框的常遇问题-contenteditable"><a href="#h5中div做输入框的常遇问题-contenteditable" class="headerlink" title="h5中div做输入框的常遇问题(contenteditable)"></a>h5中div做输入框的常遇问题(contenteditable)</h2><p>一.zepto的tap事件，安卓机点击发送按钮输入框会失去焦点，这个时候如果想实现输入框连发，就要用focus()方法使输入框重新聚焦来调用键盘，但是这样会造成输入框闪烁的问题。苹果机下输入框则不会失去焦点，这样苹果机就避免了点击发送按钮，用focus()方法重新调用键盘的问题，从而解决了输入框闪烁的问题。click、touchstart、touchend事件在任何机型下都会失焦。</p>
+<p>二.关于输入框遮挡的问题，苹果系统下所有的浏览器的第三方输入法均有输入框遮挡的问题，并且苹果本身的输入法也存在一些兼容性问题。所以iphone的所有型号都需要用输入框相对于顶部定位而不是用底部定位，但是这个方法有两个避端：<br>        1.此方法必须使用穷举的方式，将机型一一匹配出，再针对机型做出适配，这个方法耗费成本高，但是目前市场上并没有很好的解决方法，由于苹果系统的一致性，匹配苹果机型可根据屏幕尺寸来进行机型判断，以下代码可供参考：</p>
+<pre><code>//FIXME 初始化UA参数
+    initUA: function() {
+        var that = That.cacheInfo.UAInfo = {};
+        // FIXME 是否添加魅族机器&apos;mz&apos;还需验证。
+        uaList = [&apos;mz&apos;, &apos;xiaomi&apos;, &apos;android&apos;, &apos;ipad&apos;, &apos;iphone&apos;],
+            pcUaList = [&apos;windows&apos;, &apos;linux&apos;, &apos;mac&apos;],
+            uaListLen = uaList.length,
+            pcUaListLen = pcUaList.length,
+            userAgent = navigator.userAgent.toLowerCase(),
+            uaWidth = $(window).width(),
+            uaHeight = $(window).height(),
+            uaIndex = 0,
+            iphoneVersion = &apos;iphone-5&apos;,
+            returnUA = &apos;&apos;;
+        that.uaHeight = uaHeight;
+        // 先取手机端UA
+        for (var i = 0,
+                item = &apos;&apos;; i &lt; uaListLen; i++) {
+            if (returnUA.length) {
+                break;
+            }
+            item = uaList[i];
+            // FIXME 是否需要通过正则来匹配，避免贪婪导致的识别错误
+            // 或者处理UA阶段会把iPhone、iPod touch等都识别为iPhone，然后再通过widht&amp;height来区分版本
+            uaIndex = userAgent.indexOf(item);
+            // 1.需要识别iphone版本
+            if (item === &apos;iphone&apos; &amp;&amp; uaIndex &gt; 0) {
+                // 依据宽高来判断iPhone版本
+                // 返回iPhone版本
+                if (uaWidth &gt; 310 &amp;&amp; uaWidth &lt; 320) {
+                    uaWidth = 1;
+                }
+                if (uaWidth &gt; 365 &amp;&amp; uaWidth &lt; 385) {
+                    uaWidth = 2;
+                }
+                if (uaWidth &gt; 404 &amp;&amp; uaWidth &lt; 424) {
+                    uaWidth = 3;
+                }
+                switch (uaWidth) {
+                    case 1:
+                        iphoneVersion = &apos;iphone-5&apos;;
+                        // iPhone 4 (4, 4S) &amp;&amp; iPhone 5 (5c, 5s)
+                        break;
+                    case 2:
+                        iphoneVersion = &apos;iphone-6&apos;;
+                        // iPhone 6
+                        break;
+                    case 3:
+                        iphoneVersion = &apos;iphone-6+&apos;;
+                        // iPhone 6+
+                        break;
+                }
+                // 定义全局的iphoneVersion
+                that.iphoneVersion = iphoneVersion;
+                that.UA = item;
+                break;
+            }
+            // 2.识别其他机器
+            if (uaIndex &gt; 0) {
+                that.UA = item;
+                break;
+            }
+        }
+        // 再取PC端UA
+        if (uaIndex &lt;= 0) {
+            for (var i = 0,
+                    item = &apos;&apos;; i &lt; pcUaListLen; i++) {
+                item = pcUaList[i];
+                uaIndex = userAgent.indexOf(item);
+
+                if (uaIndex &gt; 0) {
+                    that.UA = &apos;pc&apos;;
+                    break;
+                }
+            }
+        }
+    }
+</code></pre><p>2.必须原生输入法和第三方输入法的高度一致，否则输入框会遮挡或高出一块(经过测试，iphone下只有5s机型第三方输入法和原生输入法的高度不一致，所有原生输入法的下方会出现一块留白)，这也是不可避免的问题，另外需要注意的是由于键盘抬起需要一定的时间，所以当输入框区域的top值发生变化时，需要设一个延时来手动去让页面滚动到顶部。这个问题产生的原因就是因为浏览器对js的absolute属性不兼容，输入框不能将页面弹起，导致页面盖在了输入法的下方，这样用户输入内容的时候看不到输入框。想要解决这个问题必须使用穷举的方法，将机型一一列出。通过不同浏览器的不同userAgent信息，再针对到某个机型下的某个浏览器做出适配，以下是针对iphone所有机型做出的适配的参考代码:</p>
+<pre><code>if (phoneType == &quot;iphone-6+&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;277px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50)
+    }
+    if (phoneType == &quot;iphone-6+&quot; &amp;&amp; browserType == &quot;mqqbrowser&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;273px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50)
+    }
+    if (phoneType == &quot;iphone-6+&quot; &amp;&amp; (browserType == &quot;micromessenger&quot; || browserType == &quot;qq&quot;)) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;277px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50)
+    }
+    if (phoneType == &quot;iphone-6+&quot; &amp;&amp; browserType == &quot;ucbrowser&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;302px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50)
+    }
+    //iphone6特殊浏览器单独处理
+    //app的webview
+    if (phoneType == &quot;iphone-6&quot;) {
+        setTimeout(function() {
+            $(&quot;.js-chatArea&quot;).css({ &quot;bottom&quot;: &quot;0px&quot; });
+            $(window).scrollTop(&apos;333&apos;);
+        }, 400);
+    }
+    if (phoneType == &quot;iphone-6&quot; &amp;&amp; browserType == &quot;safari&quot;) {
+        setTimeout(function() {
+            $(&quot;.js-chatArea&quot;).css({ &quot;bottom&quot;: &quot;0px&quot; });
+            $(window).scrollTop(&apos;288&apos;);
+        }, 400);
+    }
+    //微信 
+    if (phoneType == &quot;iphone-6&quot; &amp;&amp; browserType == &quot;micromessenger&quot;) {
+        setTimeout(function() {
+            $(&quot;.js-chatArea&quot;).css({ &quot;bottom&quot;: &quot;0px&quot; });
+            $(window).scrollTop(&apos;330&apos;);
+        }, 400);
+    }
+    if (phoneType == &quot;iphone-6&quot; &amp;&amp; browserType == &quot;mqqbrowser&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;bottom&quot;: &quot;-1px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;0&apos;);
+        }, 50);
+    }
+    if (phoneType == &quot;iphone-6&quot; &amp;&amp; browserType == &quot;ucbrowser&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;bottom&quot;: &quot;117px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;0&apos;);
+        }, 50);
+    };
+
+    //iphone5
+    if (phoneType == &quot;iphone-5&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;129px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50);
+    }
+    if (phoneType == &quot;iphone-5&quot; &amp;&amp; browserType == &quot;ucbrowser&quot;) {
+        $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;140px&quot; });
+        setTimeout(function() {
+            $(window).scrollTop(&apos;1&apos;);
+        }, 50)
+    }
+</code></pre><p>三.这样的问题由于安卓的机型比较混乱，一些低版本安卓机中发生的频率还是很高的。如何解决这样的问题，首先用navigator.userAgent获取到手机型号，针对问题机型做兼容, 市面上的安卓机型比较杂，分辨率大有不同，处理的方式也不太一样，参考代码：</p>
+<pre><code>//华为荣耀6
+if (browserType == &quot;safari&quot; &amp;&amp; browserInfo.indexOf(&apos;h60_l03&apos;) != -1 || browserInfo.indexOf(&apos;h60-l03&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;218px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//魅族note2
+if (browserType == &quot;safari&quot; &amp;&amp; browserInfo.indexOf(&apos;mz-m2&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;315px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//魅族mx5
+if (browserType == &quot;safari&quot; &amp;&amp; browserInfo.indexOf(&apos;mz-mx5&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;315px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//小米3
+if (browserType == &quot;miuibrowser&quot; &amp;&amp; browserInfo.indexOf(&apos;mi 3&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;253px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//小米4
+if (browserType == &quot;miuibrowser&quot; &amp;&amp; browserInfo.indexOf(&apos;mi 4&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;241px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//小米5
+if (browserType == &quot;miuibrowser&quot; &amp;&amp; browserInfo.indexOf(&apos;mi 5&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;286px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//小米note
+if (browserType == &quot;miuibrowser&quot; &amp;&amp; browserInfo.indexOf(&apos;mi note&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;277px&quot;});
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//红米note2
+if (browserType == &quot;miuibrowser&quot; &amp;&amp; browserInfo.indexOf(&apos;redmi note 2&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;253px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//huawei 
+if (browserType == &quot;safari&quot; &amp;&amp; browserInfo.indexOf(&apos;huawei nxt-al10&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;220px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+//huawei荣耀4x
+if (browserType == &quot;safari&quot; &amp;&amp; browserInfo.indexOf(&apos;honor_che2-tl00m_td&apos;) != -1) {
+    $(&quot;.js-chatArea&quot;).css({ &quot;top&quot;: &quot;220px&quot; });
+    setTimeout(function() {
+        $(window).scrollTop(&apos;1&apos;);
+    }, 50)
+}
+</code></pre>
       
 
       
@@ -205,57 +424,6 @@
 
       
 
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/work/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
