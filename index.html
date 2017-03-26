@@ -52,6 +52,8 @@
 		<nav class="header-menu">
 			<ul>
 			
+				<li><a href="/">index</a></li>
+	        
 				<li><a href="/technology/">Tech</a></li>
 	        
 				<li><a href="/workspace/">workspace</a></li>
@@ -96,6 +98,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -113,12 +117,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/technology/">Tech</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">index</a></li>
 		        
-					<li style="width: 50%"><a href="/workspace/">workspace</a></li>
+					<li style="width: 33.333333333333336%"><a href="/technology/">Tech</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/workspace/">workspace</a></li>
 		        
 				</ul>
 			</nav>
@@ -140,8 +146,218 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> Welcome to <a href="https://mrdaijinming.github.io/" target="_blank" rel="external">小戴的个人博客12</a>! .</p>
+        <blockquote>
+<h1 id="Gulp、webpack自动化打包工具"><a href="#Gulp、webpack自动化打包工具" class="headerlink" title="Gulp、webpack自动化打包工具"></a>Gulp、webpack自动化打包工具</h1></blockquote>
+<h2 id="gulp（https-github-com-mrdaijinming-gulpTest）"><a href="#gulp（https-github-com-mrdaijinming-gulpTest）" class="headerlink" title="gulp（https://github.com/mrdaijinming/gulpTest）"></a>gulp（<a href="https://github.com/mrdaijinming/gulpTest）" target="_blank" rel="external">https://github.com/mrdaijinming/gulpTest）</a></h2><pre><code>//载入gulp  
+var gulp = require(&apos;gulp&apos;),
+//压缩CSS 
+minifycss = require(&apos;gulp-minify-css&apos;), 
+//压缩javascript文件
+uglify = require(&apos;gulp-uglify&apos;),
+//压缩图片
+imagemin = require(&apos;gulp-imagemin&apos;),
+//合并文件
+concat = require(&apos;gulp-concat&apos;),
+//gulp执行通知
+notify = require(&apos;gulp-notify&apos;),
+//缓存
+cache = require(&apos;gulp-cache&apos;),
+//动态加载，实时刷新
+livereload = require(&apos;gulp-livereload&apos;),
+ //压缩html
+//htmlmin = require(&apos;gulp-htmlmin&apos;), 
+autoprefixer = require(&apos;gulp-autoprefixer&apos;);
+var browserify = require(&apos;gulp-browserify&apos;);
+var watch = require(&apos;gulp-watch&apos;);
+//sass,less 将sass,less文件转为css文件
+var sass = require(&apos;gulp-sass&apos;);
+var less = require(&apos;gulp-less&apos;);
+var concat = require(&apos;gulp-concat&apos;);
 
+//监听所有js文件，如果有变化执行copyHtml，copyScripts，copyimg任务
+gulp.task(&apos;watch&apos;, function() {
+    gulp.start([&apos;copyHtml&apos;, &apos;copyScripts&apos;, &apos;copyimg&apos;]);  
+    gulp.watch(&apos;./js/**&apos;, [&apos;copyScripts&apos;]);
+});
+gulp.task(&apos;copyHtml&apos;, function() {
+    return gulp.src([&apos;./index.html&apos;])
+        .pipe(gulp.dest(&apos;./dist/&apos;)) //拷背压缩后的路径  
+        //.pipe(connect.reload())//实时刷新
+        .pipe(notify({
+            message: &apos;copyHtml task complete&apos;
+        }));
+});
+gulp.task(&apos;copyScripts&apos;, function() {
+    return gulp.src([&apos;./js/*.js&apos;]) // 要压缩的js文件  
+        .pipe(concat(&apos;join.js&apos;)) //合并成一个文件
+            //.pipe(uglify()) //使用uglify进行压缩
+            .pipe(rename(&apos;join.min.js&apos;)) //重命名    
+            .pipe(gulp.dest(&apos;./dist/js&apos;)) //拷背压缩后的路径  
+            .pipe(notify({
+                 message: &apos;copyScripts task complete&apos;
+            }));
+        }); 
+gulp.task(&apos;copyimg&apos;, function() {
+    return gulp.src(&apos;./img/*.{jpg,png}&apos;) // 要拷背的图片。
+        .pipe(gulp.dest(&apos;./dist/img&apos;)) //拷背压缩后的路径  
+        .pipe(notify({
+            message: &apos;copyimg task complete&apos;
+        }));
+});
+//将sass转为css
+gulp.task(&apos;sass&apos;, function() {
+    return gulp.src([&apos;./css/*.sass&apos;])
+        .pipe(sass())
+        .pipe(gulp.dest(&apos;./dist/css&apos;)) //拷背压缩后的路径 
+        .pipe(notify({
+            message: &apos;sass task complete&apos;
+        }));
+});
+//将less转为css
+gulp.task(&apos;less&apos;, function() {
+    return gulp.src([&apos;./css/*.less&apos;])
+        .pipe(less())
+        .pipe(gulp.dest(&apos;./dist/css&apos;)) //拷背压缩后的路径  
+        .pipe(notify({
+            message: &apos;less task complete&apos; 
+        }));
+});
+
+//预设任务  
+gulp.task(&apos;default&apos;, [&apos;copyHtml&apos;, &apos;copyScripts&apos;, &apos;copyimg&apos;], function() {
+    console.log(&quot;ggg&quot;);
+    //gulp.start([&apos;copyHtml&apos;, &apos;copyScripts&apos;, &apos;copyimg&apos;]);  
+});
+
+//考背多个路径下的文件
+// gulp.task(&apos;js&apos;, function() {
+//     return gulp.src([&apos;./js/js1.js&apos;,&apos;./js/js2.js&apos;,&apos;!./js/js3.js&apos;])// 要拷背的图片。**：匹配任何字符，包括文件分隔符。！：表示排除匹配
+//         .pipe(gulp.dest(&apos;./dist/js&apos;))//拷背压缩后的路径  
+//         .pipe(notify({  
+//             message: &apos;js task complete&apos;  
+//         }));  
+// }); 
+
+//实时预览；
+//var connect=require(&apos;gulp-connect&apos;);
+// gulp.task(&apos;server&apos;,function(){
+//     connect.server({
+//         root:&apos;dist&apos;,//设置文件根目录
+//         port:8080,//设置端口
+//         livereload:true//动态加载，实时刷新 
+//     })
+// });
+//监听源文件，源文件发生变化则重启服务器，时实刷新
+//gulp.task(&apos;default&apos;,[&apos;server&apos;,&apos;watch&apos;]);
+</code></pre><h2 id="webpack（https-github-com-mrdaijinming-webpackTest）"><a href="#webpack（https-github-com-mrdaijinming-webpackTest）" class="headerlink" title="webpack（https://github.com/mrdaijinming/webpackTest）"></a>webpack（<a href="https://github.com/mrdaijinming/webpackTest）" target="_blank" rel="external">https://github.com/mrdaijinming/webpackTest）</a></h2><h3 id="什么是webpack"><a href="#什么是webpack" class="headerlink" title="什么是webpack?"></a>什么是webpack?</h3><p>1.具有Grunt、gulp对于静态资源自动化构建的能力<br>2.静态资源打包工具 </p>
+<ol>
+<li>兼容多种js书写规范，具有更强大的js模块化功能<br>webpack是一个出色的前端自动化构建工具、模块化工具、资源管理工具<br>&lt;!– <h3 id="webpack的特性"><a href="#webpack的特性" class="headerlink" title="webpack的特性?"></a>webpack的特性?</h3>1.仅需要对应的加载器即可支持，配置简单，关注文件依赖关系即可<br>2.用于处理文件依赖分析和进行打包，让程序员可以专注组件开发<br>3.兼容各种js模块规范-AMD、CommonJS、ES6<br>4.对各种资源都可支持打包css、js/jsx、img、svg、fonts等<br>5.可打包成多个模块,实现公共模块、独立模块按需加载<br>6.支持内存打包和实时打包生成文件,性能更快 </li>
+</ol>
+<p>安装<br>npm install -g webpack（建议打包成全局的）<br>npm install –save-dev webpack<br> –&gt;</p>
+<pre><code>webpack作用：
+一切都是模块化（js,css,图片等）
+一个模块加载器，打包工具
+
+安装webpack:
+流程：
+1.安装webpack命令环境
+    sudo npm install webpack -g (sudo 获取npm安装权限)
+    验证ok?
+        webpack --version
+
+
+ 2.package.json 工程文件（需要依赖模块，库描述，版本，作者。。。）
+npm init
+ 3.安装本地webpack
+    npm install webpack -D 相当于 --dev
+
+
+例子：
+index.html 页面 
+entry.js. 入口文件（编写需要的代码）
+
+终端操作:webpack entry.js bundle.js
+-------------------
+自动解决依赖
+    默认支持commonJs规范
+----------------
+webpack默认只支持javascript文件
+*需要用加载器（loader）
+loader类似一种转化器，它可以把一个东西，转成另一个
+-----------------
+css文件：
+    style-loader
+    css-loader
+
+下载：
+    npm install style-loader css-loader -D
+注意：
+    在webpack中，多个loader加载，用！连接
+---------------
+配置 webpack.config.js
+作用：配置一些webpack需要入口中
+    最好用这个 
+
+终端 webpack
+    webpack 开发环境下编译（打包 ）
+    webpack -p 生产环境下编译 （压缩）
+    webpack -w 监听文件改动，自动编译（速度快）
+    webpack -d 开启(生成)source maps （F12 source里面可以看到打包前的文件，方便调试）
+
+    webpack -wdp
+
+-----------------
+ES6-&gt;babel转化 （转化编译后就可以使用ES6的语法）
+
+babel使用 ：
+    npm install babel-loader babel-core babel-preset-es2015 -D
+    模块定义：
+    export default {}
+    引入模块：
+    import 名字 from 模块名
+    配置babel预设：
+    1.webpack.config.js
+     babel{
+            &quot;presets&quot;:[&apos;es2015&apos;]
+        }
+        2.baberc 配置
+   -----------------------------
+   webpack-dev-server (webpack服务)基于安装webpack
+
+  语法
+    webpack-dev-server --port 8088 端口号
+    webpack-dev-server --inline 改变完代码以后，自动刷新浏览器 
+    webpack-dev-server --hot 热重载（局部更改）
+
+    1.终端：webpack-dev-server --port 8088 --inline --hot（未）
+    2.配置文件：devServer:{      //服务（未）
+                    port:8088,
+                    inline:true
+                }
+    3.package.json文件里面(已)
+    &quot;script&quot;:{
+        &quot;dev&quot;:&quot;webpack-dev-server --port 8088 --inline --hot&quot;
+    }
+    终端运行的时候运行 npm run dev
+
+----------------------
+resolve:配置，省略引入文件名后缀，别名
+ resolve:{          //省略后缀
+        &quot;extensions&quot;:[&apos;&apos;,&apos;.js&apos;,&apos;.css&apos;]
+    }
+------------------------
+
+react配置：
+    ES6语法：babel-core babel-preste-es2015
+
+    babel-loader
+    babel-preset-react //react的预设 
+    react-hot-loader  //react代码实时更新
+    ---------------
+    安装react相关库：react,react-dom
+    --------------
+    最终：可以编写react代码
+</code></pre>
       
 
       
