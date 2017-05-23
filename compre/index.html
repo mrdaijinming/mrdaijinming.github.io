@@ -8,13 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>前端开发工程师</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="forEach、filter、map的用法和区别forEach:用法：遍历数组123456789101112function printElt(element, index, array) &amp;#123;    document.writeln(&amp;quot;[&amp;quot; + index + &amp;quot;] is &amp;quot; + element);&amp;#125;[2, 5, 9].forEach(">
+<meta property="og:type" content="website">
 <meta property="og:title" content="前端开发工程师">
 <meta property="og:url" content="http://yoursite.com/compre/index.html">
 <meta property="og:site_name" content="前端开发工程师">
-<meta property="og:updated_time" content="2017-03-26T07:29:31.000Z">
+<meta property="og:description" content="forEach、filter、map的用法和区别forEach:用法：遍历数组123456789101112function printElt(element, index, array) &amp;#123;    document.writeln(&amp;quot;[&amp;quot; + index + &amp;quot;] is &amp;quot; + element);&amp;#125;[2, 5, 9].forEach(">
+<meta property="og:updated_time" content="2017-05-23T03:41:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端开发工程师">
+<meta name="twitter:description" content="forEach、filter、map的用法和区别forEach:用法：遍历数组123456789101112function printElt(element, index, array) &amp;#123;    document.writeln(&amp;quot;[&amp;quot; + index + &amp;quot;] is &amp;quot; + element);&amp;#125;[2, 5, 9].forEach(">
   
     <link rel="alternative" href="/atom.xml" title="前端开发工程师" type="application/atom+xml">
   
@@ -55,7 +58,9 @@
 			
 				<li><a href="/">index</a></li>
 	        
-				<li><a href="/technology/">Tech</a></li>
+				<li><a href="/compre/">语法</a></li>
+	        
+				<li><a href="/technology/">gulp/webpack</a></li>
 	        
 				<li><a href="/workspace/">workspace</a></li>
 	        
@@ -101,6 +106,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -121,11 +128,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">index</a></li>
+					<li style="width: 25%"><a href="/">index</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/technology/">Tech</a></li>
+					<li style="width: 25%"><a href="/compre/">语法</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/workspace/">workspace</a></li>
+					<li style="width: 25%"><a href="/technology/">gulp/webpack</a></li>
+		        
+					<li style="width: 25%"><a href="/workspace/">workspace</a></li>
 		        
 				</ul>
 			</nav>
@@ -145,7 +154,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- > 
+        <p><br></p>
+<h2 id="forEach、filter、map的用法和区别"><a href="#forEach、filter、map的用法和区别" class="headerlink" title="forEach、filter、map的用法和区别"></a>forEach、filter、map的用法和区别</h2><h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach:"></a>forEach:</h3><p>用法：遍历数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function printElt(element, index, array) &#123;</div><div class="line">    document.writeln(&quot;[&quot; + index + &quot;] is &quot; + element);</div><div class="line">&#125;</div><div class="line">[2, 5, 9].forEach(printElt);</div><div class="line">// Prints:</div><div class="line">// [0] is 2</div><div class="line">// [1] is 5</div><div class="line">// [2] is 9</div><div class="line">//结果：</div><div class="line">//[0] is 2</div><div class="line">//[1] is 5</div><div class="line">//[2] is 9</div></pre></td></tr></table></figure></p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter():"></a>filter():</h3><p> 语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var filteredArray = array.filter(callback[, thisObject]);</div><div class="line">参数说明：</div><div class="line">callback： 要对每个数组元素执行的回调函数。</div><div class="line">thisObject ： 在执行回调函数时定义的this对象。</div><div class="line">复制代码</div><div class="line">//过滤掉小于 10 的数组元素：</div><div class="line">//代码：</div><div class="line">function isBigEnough(element, index, array) &#123;</div><div class="line">    return (element &gt;= 10);</div><div class="line">&#125;</div><div class="line">var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);</div><div class="line">// 12, 130, 44</div><div class="line">//结果：[12, 5, 8, 130, 44].filter(isBigEnough) ： 12, 130, 44 </div><div class="line">复制代码</div><div class="line">功能说明：</div><div class="line">对数组中的每个元素都执行一次指定的函数（callback），并且创建一个新的数组，该数组元素是所有回调函数执行时返回值为 true 的原数组元素。它只对数组中的非空元素执行指定的函数，没有赋值或者已经删除的元素将被忽略，同时，新创建的数组也不会包含这些元素。</div><div class="line"></div><div class="line">回调函数可以有三个参数：当前元素，当前元素的索引和当前的数组对象。</div><div class="line"></div><div class="line">如参数 thisObject 被传递进来，它将被当做回调函数（callback）内部的 this 对象，如果没有传递或者为null，那么将会使用全局对象。</div><div class="line"></div><div class="line">filter 不会改变原有数组，记住：只有在回调函数执行前传入的数组元素才有效，在回调函数开始执行后才添加的元素将被忽略，而在回调函数开始执行到最后一个元素这一期间，数组元素被删除或者被更改的，将以回调函数访问到该元素的时间为准，被删除的元素将被忽略。</div></pre></td></tr></table></figure></p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>map() 方法返回一个由原数组中的每个元素调用一个指定方法后的返回值组成的新数组</p>
+<h4 id="1-在字符串中使用map"><a href="#1-在字符串中使用map" class="headerlink" title="1 在字符串中使用map"></a>1 在字符串中使用map</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">在一个 String  上使用 map 方法获取字符串中每个字符所对应的 ASCII 码组成的数组：</div><div class="line">var map = Array.prototype.map</div><div class="line">var a = map.call(&quot;Hello World&quot;, function(x) &#123; return x.charCodeAt(0); &#125;)</div><div class="line">// a的值为[72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]</div></pre></td></tr></table></figure>
+<h4 id="2下面的语句返回什么呢"><a href="#2下面的语句返回什么呢" class="headerlink" title="2下面的语句返回什么呢:"></a>2下面的语句返回什么呢:</h4><figure class="highlight plain"><figcaption><span>"2", "3"].map(parseInt);</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 你可能觉的会是[1, 2, 3]</div><div class="line">// 但实际的结果是 [1, NaN, NaN]</div><div class="line"></div><div class="line">// 通常使用parseInt时,只需要传递一个参数.但实际上,parseInt可以有两个参数.第二个参数是进制数.可以通过语句&quot;alert(parseInt.length)===2&quot;来验证.</div><div class="line">// map方法在调用callback函数时,会给它传递三个参数:当前正在遍历的元素, 元素索引, 原数组本身.</div><div class="line">// 第三个参数parseInt会忽视, 但第二个参数不会,也就是说,parseInt把传过来的索引值当成进制数来使用.从而返回了NaN.</div><div class="line"></div><div class="line">/*</div><div class="line">//应该使用如下的用户函数returnInt</div><div class="line"></div><div class="line">function returnInt(element)&#123;</div><div class="line">  return parseInt(element,10);</div><div class="line">&#125;</div><div class="line"></div><div class="line">[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(returnInt);</div><div class="line">// 返回[1,2,3]</div></pre></td></tr></table></figure>
+<!-- > 
 # javaScript总结 
 
 ### js中有几种数据类型？
